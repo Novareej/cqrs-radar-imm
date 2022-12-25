@@ -21,5 +21,4 @@ public class Vehicule {
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Proprietaire owner;
-    private String proprietaireId;
 }

@@ -28,15 +28,12 @@ public class VehiculeServiceHandler {
     @Transactional
     public void on(VehiculeCreatedEvent event) {
         log.info("VehiculeCreatedEvent: {}", event);
-        Proprietaire owner = proprRepository.findById(event.getProprietaire()).get();
         Vehicule vehicule = new Vehicule();
         vehicule.setId(event.getId());
         vehicule.setMatricule(event.getMatricule());
         vehicule.setMarque(event.getMarque());
         vehicule.setModele(event.getModele());
         vehicule.setPuissance(event.getPuissance());
-        vehicule.setOwner(owner);
-        vehicule.setProprietaireId(owner.getId());
         vehiculeRepository.save(vehicule);
     }
 

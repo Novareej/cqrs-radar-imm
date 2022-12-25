@@ -3,6 +3,7 @@ package ma.enset.query.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ma.enset.events.ProprCreatedEvent;
+import ma.enset.queries.GetAllPropr;
 import ma.enset.queries.GetPropr;
 import ma.enset.query.entities.Proprietaire;
 import ma.enset.query.repositories.ProprRepository;
@@ -32,13 +33,11 @@ public class ProprietaireServiceHandler {
         ownerRepository.save(owner);
     }
 
-/*
-
     @QueryHandler
-    public List<Proprietaire> on(GetPropr query) {
+    public List<Proprietaire> on(GetAllPropr query) {
         return ownerRepository.findAll();
     }
-*/
+
 
     @QueryHandler
     public Proprietaire on(GetPropr query) {
