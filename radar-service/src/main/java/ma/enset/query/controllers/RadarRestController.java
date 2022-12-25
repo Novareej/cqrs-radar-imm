@@ -19,6 +19,7 @@ public class RadarRestController {
 
     @GetMapping("/all")
     public List<Radar> getAll(){
-        return queryGateway.query(new FindAllRadars(), ResponseTypes.multipleInstancesOf(Radar.class)).join();
+        List<Radar> radars = queryGateway.query(new FindAllRadars(), ResponseTypes.multipleInstancesOf(Radar.class)).join();
+        return  radars;
     }
 }
