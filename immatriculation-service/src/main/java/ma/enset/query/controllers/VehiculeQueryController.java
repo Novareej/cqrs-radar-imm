@@ -1,10 +1,11 @@
 package ma.enset.query.controllers;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.AllArgsConstructor;
-import ma.enset.commonapi.queries.GetVehicule;
-import ma.enset.commonapi.queries.GetVehicules;
-import ma.enset.immatriculationservice.query.entities.Owner;
-import ma.enset.immatriculationservice.query.entities.Vehicule;
+import ma.enset.queries.GetVehicule;
+import ma.enset.queries.GetVehicules;
+import ma.enset.query.entities.Proprietaire;
+import ma.enset.query.entities.Vehicule;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,8 @@ public class VehiculeQueryController {
     }
 
     @GetMapping(path = "/{id}")
-    public Owner getVehicule(@PathVariable String id) {
-        return queryGateway.query(new GetVehicule(id), Owner.class).join();
+    public Proprietaire getVehicule(@PathVariable String id) {
+        return queryGateway.query(new GetVehicule(id), Proprietaire.class).join();
     }
 
 
