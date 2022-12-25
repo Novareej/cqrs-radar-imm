@@ -5,6 +5,10 @@
 ## Le diagramme de classe global
 
 ## Service Radar 
+
+### Tests 
+![img.png](img.png)
+![img_1.png](img_1.png)
 ### Commands
  * BaseCommand
 ```
