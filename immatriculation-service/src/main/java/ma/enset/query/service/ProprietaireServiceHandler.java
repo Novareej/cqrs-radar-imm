@@ -2,11 +2,10 @@ package ma.enset.query.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.enset.commonapi.events.OwnerCreatedEvent;
-import ma.enset.commonapi.queries.GetOwner;
-import ma.enset.commonapi.queries.GetOwners;
-import ma.enset.immatriculationservice.query.entities.Owner;
-import ma.enset.immatriculationservice.query.repositories.OwnerRepository;
+import ma.enset.events.ProprCreatedEvent;
+import ma.enset.queries.GetPropr;
+import ma.enset.query.entities.Proprietaire;
+import ma.enset.query.repositories.ProprRepository;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Service;
@@ -18,14 +17,14 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class OwnerServiceHandler {
-    private OwnerRepository ownerRepository;
+public class ProprietaireServiceHandler {
+    private ProprRepository ownerRepository;
 
     @EventHandler
     @Transactional
-    public void on(OwnerCreatedEvent event) {
-        log.info("OwnerCreatedEvent: {}", event);
-        Owner owner = new Owner();
+    public void on(ProprCreatedEvent event) {
+        log.info("Proprietaire CreatedEvent: {}", event);
+        Proprietaire owner = new Proprietaire();
         owner.setId(event.getId());
         owner.setName(event.getName());
         owner.setDateOfBirth(event.getDateOfBirth());
@@ -33,14 +32,16 @@ public class OwnerServiceHandler {
         ownerRepository.save(owner);
     }
 
+/*
 
     @QueryHandler
-    public List<Owner> on(GetOwners query) {
+    public List<Proprietaire> on(GetPropr query) {
         return ownerRepository.findAll();
     }
+*/
 
     @QueryHandler
-    public Owner on(GetOwner query) {
+    public Proprietaire on(GetPropr query) {
         return ownerRepository.findById(query.getId()).get();
     }
 }

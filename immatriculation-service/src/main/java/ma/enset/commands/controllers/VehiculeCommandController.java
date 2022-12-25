@@ -1,8 +1,8 @@
 package ma.enset.commands.controllers;
 
 import lombok.AllArgsConstructor;
-import ma.enset.commonapi.commands.CreateVehiculeCommand;
-import ma.enset.commonapi.dtos.CreateVehiculeRequestDTO;
+import ma.enset.commands.CreateVehiculeCommand;
+import ma.enset.dtos.CreateVehiculeRequestDTO;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;

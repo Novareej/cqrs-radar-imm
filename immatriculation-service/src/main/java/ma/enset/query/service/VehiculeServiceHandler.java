@@ -2,13 +2,13 @@ package ma.enset.query.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.enset.commonapi.events.VehiculeCreatedEvent;
-import ma.enset.commonapi.queries.GetVehicule;
-import ma.enset.commonapi.queries.GetVehicules;
-import ma.enset.immatriculationservice.query.entities.Owner;
-import ma.enset.immatriculationservice.query.entities.Vehicule;
-import ma.enset.immatriculationservice.query.repositories.OwnerRepository;
-import ma.enset.immatriculationservice.query.repositories.VehiculeRepository;
+import ma.enset.events.VehiculeCreatedEvent;
+import ma.enset.queries.GetVehicule;
+import ma.enset.queries.GetVehicules;
+import ma.enset.query.entities.Proprietaire;
+import ma.enset.query.entities.Vehicule;
+import ma.enset.query.repositories.ProprRepository;
+import ma.enset.query.repositories.VehiculeRepository;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Service;
@@ -22,13 +22,13 @@ import java.util.List;
 @Slf4j
 public class VehiculeServiceHandler {
     private VehiculeRepository vehiculeRepository;
-    private OwnerRepository ownerRepository;
+    private ProprRepository proprRepository;
 
     @EventHandler
     @Transactional
     public void on(VehiculeCreatedEvent event) {
         log.info("VehiculeCreatedEvent: {}", event);
-        Owner owner = ownerRepository.findById(event.getProprietaire()).get();
+        Proprietaire owner = proprRepository.findById(event.getProprietaire()).get();
         Vehicule vehicule = new Vehicule();
         vehicule.setId(event.getId());
         vehicule.setMatricule(event.getMatricule());
